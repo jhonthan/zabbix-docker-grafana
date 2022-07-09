@@ -1,0 +1,86 @@
+- hosts: all
+  
+  become: yes
+  tasks:
+
+  # Install Docker
+  # --
+  # 
+  - name: 'Instalando Pre-Requisitos'
+    apt:
+      name:
+        - apt-transport-https
+        - ca-certificates 
+        - curl 
+        - gnupg-agent
+        - software-properties-common
+      update_cache: yes
+
+  - name: Adiciona apt-key
+    apt_key:
+      url: https://download.docker.com/linux/ubuntu/gpg
+
+  - name: Adiciona repositorio Docker 
+    apt_repository:
+      repo: deb https://download.docker.com/linux/ubuntu focal stable
+
+  - name: Instalando Docker 
+    apt:
+      name: 
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+      update_cache: yes
+
+  - name: Adiciona Usuario Ubuntu
+    shell: "useradd ubuntu"
+
+  - name: Adiciona Permissoes Ubuntu
+    shell: "usermod -aG docker ubuntu"
+
+  # Installs Docker SDK
+  # --
+  # 
+  - name: Instalando Python3
+    apt:
+      name: python3-pip
+  
+  - name: Instalando Python SDK
+    become_user: "root"
+    pip:
+      name:
+        - docker
+        - docker-compose
+
+  - name: Copia Arquivos Docker Compose
+    copy:
+      src: "{{ item }}"
+      dest: '/tmp/'
+      owner: root
+      mode: 600
+    with_fileglob:
+    - 'files/zabbix/*'
+
+  - name: Copiando Variaveis para container
+    become: true 
+    copy:
+      src: 'files/zabbix/.env'
+      dest: '/tmp/.env'
+
+  - name: Copiando Script para container
+    become: true 
+    copy:
+      src: './script.sh'
+      dest: '/tmp/script.sh'
+      mode: 0777 
+  - name: Execute the Script
+    shell: sh /tmp/script.sh
+
+  # - name: Copia Arquivos Python-Discord
+  #   copy:
+  #     src: "{{ item }}"
+  #     dest: '/tmp/'
+  #     owner: root
+  #     mode: 600
+  #   with_fileglob:
+  #   - 'files/Discord/*'  
