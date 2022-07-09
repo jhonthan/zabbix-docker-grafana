@@ -55,4 +55,5 @@ In this lab, the focus is to create an automation for creating the structure of 
 
 ### 🤔 Some lab considerations
 My main goal with this project/lab was to start from scratch with these tools and start using Docker / Kubernetes / Terraform / GitHub Actions (CI/CD). I'm starting my studies in DevOps, I believe there are more efficient and safer ways to do this process, but keep in mind that it was done by a student with a lot of desire to learn and do.
+
 ---
