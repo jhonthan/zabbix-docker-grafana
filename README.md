@@ -38,7 +38,7 @@ In this lab, the focus is to create an automation for creating the structure of 
 - MARIADB_ROOT_PASSWORD='Your Password'
 - MARIADB_DATABASE='zabbix'
 - MARIADB_USER='zabbix'
-- MARIADB_PASSWORD='huYour Password'
+- MARIADB_PASSWORD='Your Password'
 
 
 - DB_SERVER_HOST='mysql'
