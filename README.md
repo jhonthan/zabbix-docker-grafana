@@ -1,4 +1,4 @@
-# zabbix-docker-grafana-discord
+# zabbix-docker-grafana
 
 ## 💡 Idea
 In this lab, the focus is to create an automation for creating the structure of Zabbix and Grafana for monitoring resources and the access can be used the URL using the Route 53 for create DNS and using the Digital Ocean for provider. 📊
