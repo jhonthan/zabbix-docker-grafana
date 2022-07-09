@@ -7,7 +7,6 @@ In this lab, the focus is to create an automation for creating the structure of 
 
 ### 🛠️ Build with
 * Terraform
-* Docker
 * Ansible
 * Docker
 * Docker Compose
